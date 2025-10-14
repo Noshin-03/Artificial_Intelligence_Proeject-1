@@ -1,0 +1,30 @@
+.selector-root {
+  max-width: 900px;
+  margin: 24px auto;
+  text-align: center;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.theme-btn {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #888;
+  background: #160a0a;
+  cursor: pointer;
+}
+
+.theme-btn.active {
+  background: #00824c;
+  color: #fff;
+  border-color: #333;
+}
+
+.board-area { min-height: 520px; display: flex; align-items: center; justify-content: center; }
+.placeholder { color: #555; }

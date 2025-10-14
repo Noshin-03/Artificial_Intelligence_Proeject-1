@@ -1,0 +1,22 @@
+
+.piece-img {
+  width: 85px;
+  height: 85px;
+  display: block;
+  align-self: center;
+  /* margin: 8px auto; */
+  margin-bottom: 10px;
+  pointer-events: none;
+}
+
+.piece-img-wp{
+    width: 120px;
+    height: 120px;
+    margin-bottom: 25px;
+}
+
+.piece-img-bp {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 25px;
+}
