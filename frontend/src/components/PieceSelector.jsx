@@ -12,6 +12,7 @@ const PieceSelector = () => {
   return (
     <div className="selector-root">
       <h2>Choose a piece set</h2>
+      <h2 id='welcome-text'>Welcome to Chess Attack (a 5X6 mini chess game) </h2>
       <div className="buttons">
         {themes.map((t) => (
           <button

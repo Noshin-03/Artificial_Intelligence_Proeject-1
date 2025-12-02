@@ -28,3 +28,7 @@
 
 .board-area { min-height: 520px; display: flex; align-items: center; justify-content: center; }
 .placeholder { color: #555; }
+
+#welcome-text{
+  color: rgb(93, 226, 93);
+}
