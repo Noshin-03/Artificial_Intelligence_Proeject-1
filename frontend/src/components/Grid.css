@@ -12,6 +12,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 .light {
@@ -23,3 +24,33 @@
 }
 
 
+.square.selected {
+  /* outline: 3px solid rgb(54, 241, 234); */
+  background-color: rgba(0, 234, 255, 0.753); /* Highlight background only */
+}
+
+.square img.piece-img {
+  position: relative;
+  z-index: 2; /* Ensures the piece stays above the highlight */
+  pointer-events: none;
+}
+
+.selected {
+  /* outline: 3px solid yellow; */
+}
+
+.move-square {
+  background-color: rgba(0, 200, 255, 0.4) !important;
+  /* outline: 2px solid cyan; */
+}
+
+.capture-square {
+  background-color: rgba(255, 0, 0, 0.35) !important;
+  /* outline: 2px solid red; */
+}
+
+.piece-img {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+}
