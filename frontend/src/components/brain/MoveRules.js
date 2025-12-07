@@ -1,4 +1,7 @@
-// components/moveRules.js
+//TODO: add logic for pawn upgrade
+//TODO: add logic for check and checkmate (game ending)
+//TODO: add logic for game draw
+
 
 const inside = (r, c) => r >= 0 && r < 6 && c >= 0 && c < 5;
 

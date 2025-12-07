@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Grid.css";
-import getMoves from "./MoveRules";
+import getMoves from "./brain/MoveRules";
 import defaultPieces from "./pieces";
 
 const START = [
@@ -15,11 +15,10 @@ const START = [
 const Grid = ({ piecesMap }) => {
   const pieces = piecesMap || defaultPieces;
 
-  // ✅ ALL state must be inside the component:
   const [board, setBoard] = useState(START);
   const [selected, setSelected] = useState(null);
   const [legalMoves, setLegalMoves] = useState([]);
-  const [turn, setTurn] = useState("w"); // FIXED
+  const [turn, setTurn] = useState("w"); 
 
   const handleClick = (row, col) => {
     const piece = board[row][col];
@@ -28,7 +27,7 @@ const Grid = ({ piecesMap }) => {
       (m) => m.row === row && m.col === col
     );
 
-    // 1. Move piece if clicked on a legal move
+    
     if (isMoveSquare && selected) {
       const newBoard = board.map((r) => [...r]);
 
@@ -39,16 +38,16 @@ const Grid = ({ piecesMap }) => {
       setSelected(null);
       setLegalMoves([]);
 
-      // Switch turn after a valid move
+      
       setTurn(turn === "w" ? "b" : "w");
 
       return;
     }
 
-    // 2. Selecting a piece (only if it's your turn)
+    
     if (piece) {
       if (piece[0] !== turn) {
-        return; // Prevent selecting opponent pieces
+        return; 
       }
 
       setSelected({ row, col });
@@ -56,7 +55,7 @@ const Grid = ({ piecesMap }) => {
       return;
     }
 
-    // 3. Clicked empty square but not a valid move
+    
     setSelected(null);
     setLegalMoves([]);
   };
