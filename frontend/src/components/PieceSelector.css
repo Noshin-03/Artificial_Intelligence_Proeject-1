@@ -1,7 +1,51 @@
+.mode-controls {
+  margin: 16px 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mode-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.mode-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.mode-btn {
+  padding: 10px 14px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  background: #f7f7f7;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.mode-btn:hover {
+  border-color: #999;
+  background: #e8e8e8;
+}
+
+.mode-btn.active {
+  border-color: #4CAF50;
+  background: #e8f5e9;
+  color: #2e7d32;
+  font-weight: 600;
+}
+
 .selector-root {
   max-width: 900px;
   margin: 24px auto;
   text-align: center;
+  padding: 0 15px;
 }
 
 .buttons {
@@ -13,22 +57,141 @@
 }
 
 .theme-btn {
-  padding: 8px 12px;
+  padding: 10px 14px;
   border-radius: 6px;
-  border: 1px solid #888;
+  border: 2px solid #888;
   background: #765252;
+  color: #fff;
   cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.theme-btn:hover {
+  background: #8b6363;
+  border-color: #555;
 }
 
 .theme-btn.active {
   background: #00824c;
   color: #fff;
-  border-color: #333;
+  border-color: #005a34;
+  box-shadow: 0 0 8px rgba(0, 130, 76, 0.3);
 }
 
-.board-area { min-height: 520px; display: flex; align-items: center; justify-content: center; }
-.placeholder { color: #555; }
+.board-area {
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
 
-#welcome-text{
+.placeholder {
+  color: #555;
+  font-size: 16px;
+}
+
+#welcome-text {
   color: rgb(93, 226, 93);
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .selector-root {
+    margin: 16px auto;
+  }
+
+  .buttons {
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+
+  .theme-btn {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+
+  .mode-controls {
+    margin: 12px 0 16px;
+    gap: 10px;
+  }
+
+  .mode-row {
+    gap: 10px;
+  }
+
+  .mode-buttons {
+    gap: 6px;
+  }
+
+  .mode-btn {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  .board-area {
+    min-height: 450px;
+  }
+}
+
+@media (max-width: 480px) {
+  .selector-root {
+    margin: 12px auto;
+    padding: 0 10px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  #welcome-text {
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+
+  .buttons {
+    gap: 4px;
+    margin-bottom: 10px;
+  }
+
+  .theme-btn {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .mode-controls {
+    margin: 10px 0 12px;
+    gap: 8px;
+  }
+
+  .mode-row {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .mode-row label {
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .mode-buttons {
+    gap: 4px;
+    width: 100%;
+  }
+
+  .mode-btn {
+    flex: 1;
+    min-width: 80px;
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .board-area {
+    min-height: 380px;
+  }
 }

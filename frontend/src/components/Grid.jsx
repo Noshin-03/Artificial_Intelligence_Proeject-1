@@ -13,8 +13,14 @@ const START = [
   ["wR", "wN", "wB", "wQ", "wK"]
 ];
 
-const Grid = ({ piecesMap }) => {
+import { findBestMove } from "./brain/chess_engine";
+
+const Grid = ({ piecesMap, mode = "hvh", botColor = "b", difficulty = "medium" }) => {
   const pieces = piecesMap || defaultPieces;
+
+  // Map difficulty to search depth
+  const depthMap = { easy: 2, medium: 3, hard: 4 };
+  const botDepth = depthMap[difficulty] || 3;
 
   const [board, setBoard] = useState(START);
   const [selected, setSelected] = useState(null);
@@ -25,6 +31,40 @@ const Grid = ({ piecesMap }) => {
   const [timerStarted, setTimerStarted] = useState(false);
   const [whiteTime, setWhiteTime] = useState(600); // 10 minutes in seconds
   const [blackTime, setBlackTime] = useState(600); // 10 minutes in seconds
+  // Bot move effect: if mode is hvb and it's bot's turn, make a move
+  useEffect(() => {
+    if (mode !== "hvb") return;
+    if (turn !== botColor) return;
+    if (promotionModal.show) return; // Don't move if promotion modal is open
+
+    // Delay slightly to feel natural
+    const t = setTimeout(() => {
+      const best = findBestMove(board, botDepth, botColor);
+      if (!best) return; // No legal moves (shouldn't happen if game is running)
+
+      const newBoard = board.map(r => [...r]);
+      const movingPiece = board[best.from.r][best.from.c];
+      const promoteTo = best.promoteTo || null;
+      newBoard[best.from.r][best.from.c] = null;
+      newBoard[best.to.r][best.to.c] = promoteTo ? movingPiece[0] + promoteTo : movingPiece;
+
+      setBoard(newBoard);
+      setSelected(null);
+      setLegalMoves([]);
+      const nextTurn = turn === "w" ? "b" : "w";
+      setTurn(nextTurn);
+
+      if (turn === "w" && !timerStarted) {
+        setTimerStarted(true);
+      }
+
+      setCheckStatus({
+        w: isInCheck(newBoard, "w"),
+        b: isInCheck(newBoard, "b")
+      });
+    }, 500);
+    return () => clearTimeout(t);
+  }, [mode, botColor, botDepth, turn, board, promotionModal.show]);
 
   // Timer effect
   useEffect(() => {
@@ -136,6 +176,8 @@ const Grid = ({ piecesMap }) => {
     // --- Selecting a piece ---
     if (piece) {
       if (piece[0] !== turn) return;
+      // In hvb mode, prevent selecting bot pieces
+      if (mode === "hvb" && piece[0] === botColor) return;
 
       const moves = getMoves(board, row, col);
 
@@ -155,8 +197,26 @@ const Grid = ({ piecesMap }) => {
     setLegalMoves([]);
   };
 
+  const resetGame = () => {
+    setBoard(START);
+    setSelected(null);
+    setLegalMoves([]);
+    setTurn("w");
+    setCheckStatus({ w: false, b: false });
+    setPromotionModal({ show: false, options: [], row: null, col: null });
+    setTimerStarted(false);
+    setWhiteTime(600);
+    setBlackTime(600);
+  };
+
   return (
     <div className="game-container">
+      <div className="controls-section">
+        <button className="reset-btn" onClick={resetGame}>
+          New Game
+        </button>
+      </div>
+
       <div className="timer-section">
         <div className={`timer black-timer ${turn === 'b' && timerStarted ? 'active' : ''}`}>
           <div className="timer-label">Black</div>
