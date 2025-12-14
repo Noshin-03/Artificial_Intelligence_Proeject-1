@@ -2,7 +2,6 @@
 
 A smart and challenging 5×6 Minichess game powered by artificial intelligence. Play against an AI opponent that uses advanced game theory algorithms to give you a real challenge! 
 
-![Chess Attack Screenshot](Screenshot%20from%202025-12-13%2018-46-47.png)
 
 ## 🎯 What is Chess Attack?
 
