@@ -1,7 +1,7 @@
 .chess-board {
   display: grid;
-  grid-template-columns: repeat(8, 80px); /* 8 columns */
-  grid-template-rows: repeat(8, 80px);    /* 8 rows */
+  grid-template-columns: repeat(5, 80px); /* 5 columns */
+  grid-template-rows: repeat(6, 80px);    /* 6 rows */
   border: 3px solid #333;
   margin: 20px auto;
 }

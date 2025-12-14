@@ -53,7 +53,7 @@ const PieceSelector = () => {
     }}>
       <div style={{
         width: '100%',
-        maxWidth: '1200px',
+        maxWidth: '600px',
       }}>
         {/* Header */}
         <div style={{ textAlign: 'center', marginBottom: '40px' }}>
@@ -96,65 +96,42 @@ const PieceSelector = () => {
           </h2>
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
-            gap: '16px'
+            gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))',
+            gap: '12px'
           }}>
-            {themes.map((t) => {
-              const preview = pieceSets[t]?.['wQ'] || pieceSets[t]?.['bQ'];
-              return (
-                <button
-                  key={t}
-                  onClick={() => setSelected(t)}
-                  style={{
-                    padding: '18px 18px',
-                    borderRadius: '12px',
-                    border: selected === t ? '3px solid #22C55E' : '2px solid #334155',
-                    backgroundColor: selected === t ? '#1E293B' : '#0F172A',
-                    color: selected === t ? '#22C55E' : '#9ca3af',
-                    fontWeight: '700',
-                    fontSize: '16px',
-                    cursor: 'pointer',
-                    transition: 'all 0.3s ease',
-                    boxShadow: selected === t ? '0 0 24px rgba(34, 197, 94, 0.25)' : 'none',
-                    transform: selected === t ? 'scale(1.04)' : 'scale(1)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    gap: '12px'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.target.style.borderColor = '#22C55E';
-                    e.target.style.backgroundColor = '#1E293B';
-                    e.target.style.color = '#22C55E';
-                  }}
-                  onMouseLeave={(e) => {
-                    if (selected !== t) {
-                      e.target.style.borderColor = '#334155';
-                      e.target.style.backgroundColor = '#0F172A';
-                      e.target.style.color = '#9ca3af';
-                    }
-                  }}
-                >
-                  <span style={{
-                    flex: '1 1 auto',
-                    textAlign: 'left'
-                  }}>{t}</span>
-                  {preview && (
-                    <img
-                      src={preview}
-                      alt={`${t} queen preview`}
-                      style={{
-                        width: '40px',
-                        height: '40px',
-                        objectFit: 'contain',
-                        filter: selected === t ? 'none' : 'grayscale(10%)',
-                        background: 'transparent'
-                      }}
-                    />
-                  )}
-                </button>
-              );
-            })}
+            {themes.map((t) => (
+              <button
+                key={t}
+                onClick={() => setSelected(t)}
+                style={{
+                  padding: '14px 16px',
+                  borderRadius: '10px',
+                  border: selected === t ? '3px solid #22C55E' : '2px solid #334155',
+                  backgroundColor: selected === t ? '#1E293B' : '#0F172A',
+                  color: selected === t ? '#22C55E' : '#9ca3af',
+                  fontWeight: '600',
+                  fontSize: '14px',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  boxShadow: selected === t ? '0 0 20px rgba(34, 197, 94, 0.2)' : 'none',
+                  transform: selected === t ? 'scale(1.05)' : 'scale(1)',
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.borderColor = '#22C55E';
+                  e.target.style.backgroundColor = '#1E293B';
+                  e.target.style.color = '#22C55E';
+                }}
+                onMouseLeave={(e) => {
+                  if (selected !== t) {
+                    e.target.style.borderColor = '#334155';
+                    e.target.style.backgroundColor = '#0F172A';
+                    e.target.style.color = '#9ca3af';
+                  }
+                }}
+              >
+                {t}
+              </button>
+            ))}
           </div>
         </div>
 

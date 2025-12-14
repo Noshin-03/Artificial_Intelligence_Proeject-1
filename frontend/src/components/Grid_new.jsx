@@ -5,6 +5,13 @@ import defaultPieces from "./pieces";
 import PromotionModal from "./PromotionModal";
 import { findBestMove } from "./brain/chess_engine";
 
+//TODO: vobissoter kotha
+//TODO: highlight previous move
+//TODO: remove timer when playing with ai
+//TODO: add container for captured pieces
+
+//TODO: game ending condition upgrade
+
 const START = [
   ["bR", "bN", "bB", "bQ", "bK"],
   ["bP", "bP", "bP", "bP", "bP"],
@@ -16,7 +23,7 @@ const START = [
 
 const Grid = ({ piecesMap, mode = "hvh", botColor = "b", difficulty = "medium", onNewGame, darkMode = true }) => {
   const pieces = piecesMap || defaultPieces;
-  const depthMap = { easy: 2, medium: 3, hard: 4 };
+  const depthMap = { easy: 4, medium: 5, hard: 6 };
   const botDepth = depthMap[difficulty] || 3;
 
   const [board, setBoard] = useState(START);
@@ -179,10 +186,7 @@ const Grid = ({ piecesMap, mode = "hvh", botColor = "b", difficulty = "medium", 
   };
 
   return (
-    <div className="game-container" style={{
-      minHeight: '100vh',
-      backgroundColor: '#0F172A'
-    }}>
+    <div className="game-container">
       <div className="controls-section">
         <button 
           onClick={onNewGame}
@@ -220,19 +224,19 @@ const Grid = ({ piecesMap, mode = "hvh", botColor = "b", difficulty = "medium", 
           alignItems: 'center',
           gap: '8px',
           padding: '12px 24px',
-          border: `2px solid ${turn === 'b' ? '#22C55E' : '#334155'}`,
+          border: `2px solid ${turn === 'b' ? '#22C55E' : '#ccc'}`,
           borderRadius: '8px',
-          backgroundColor: turn === 'b' ? '#1E293B' : '#0F172A',
+          backgroundColor: turn === 'b' ? '#e8f5e9' : '#f5f5f5',
           minWidth: '120px',
           transition: 'all 0.3s ease',
           boxShadow: turn === 'b' ? '0 0 12px rgba(34, 197, 94, 0.3)' : 'none'
         }}>
-          <div style={{ fontSize: '14px', fontWeight: '600', color: '#e5e7eb' }}>Black</div>
-          <div style={{ fontSize: '24px', fontWeight: 'bold', color: '#ffffff' }}>{formatTime(blackTime)}</div>
+          <div style={{ fontSize: '14px', fontWeight: '600', color: '#555' }}>Black</div>
+          <div style={{ fontSize: '24px', fontWeight: 'bold' }}>{formatTime(blackTime)}</div>
         </div>
 
         <div style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '8px', color: '#e5e7eb' }}>
+          <div style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '8px', color: '#333' }}>
             {turn === "w" ? "⚪ White's Turn" : "⚫ Black's Turn"}
           </div>
           {(checkStatus.w || checkStatus.b) && (
@@ -248,15 +252,15 @@ const Grid = ({ piecesMap, mode = "hvh", botColor = "b", difficulty = "medium", 
           alignItems: 'center',
           gap: '8px',
           padding: '12px 24px',
-          border: `2px solid ${turn === 'w' ? '#22C55E' : '#334155'}`,
+          border: `2px solid ${turn === 'w' ? '#22C55E' : '#ccc'}`,
           borderRadius: '8px',
-          backgroundColor: turn === 'w' ? '#1E293B' : '#0F172A',
+          backgroundColor: turn === 'w' ? '#e8f5e9' : '#f5f5f5',
           minWidth: '120px',
           transition: 'all 0.3s ease',
           boxShadow: turn === 'w' ? '0 0 12px rgba(34, 197, 94, 0.3)' : 'none'
         }}>
-          <div style={{ fontSize: '14px', fontWeight: '600', color: '#e5e7eb' }}>White</div>
-          <div style={{ fontSize: '24px', fontWeight: 'bold', color: '#ffffff' }}>{formatTime(whiteTime)}</div>
+          <div style={{ fontSize: '14px', fontWeight: '600', color: '#555' }}>White</div>
+          <div style={{ fontSize: '24px', fontWeight: 'bold' }}>{formatTime(whiteTime)}</div>
         </div>
       </div>
 
