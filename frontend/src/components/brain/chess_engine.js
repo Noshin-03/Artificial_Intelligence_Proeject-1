@@ -108,14 +108,12 @@ export function evaluateGameResult(board, player) {
     
     if (legalMoves.length === 0) {
         if (isInCheck(board, player)) {
-            // Checkmate - opponent wins
             return {
                 over: true,
                 winner: player === 'w' ? 'b' : 'w',
                 reason: 'checkmate'
             };
         } else {
-            // Stalemate
             return {
                 over: true,
                 winner: 'draw',
@@ -194,12 +192,10 @@ export function evaluateBoard(board) {
             const type = piece[1];
             const multiplier = color === 'w' ? 1 : -1;
 
-            // Material value
             score += pieceValues[type] * multiplier;
 
-            // Positional bonus
             let positionBonus = 0;
-            const row = color === 'w' ? r : (5 - r); // Flip for black
+            const row = color === 'w' ? r : (5 - r);
 
             switch(type) {
                 case 'P':

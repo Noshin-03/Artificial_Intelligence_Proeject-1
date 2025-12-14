@@ -26,8 +26,8 @@ const Grid = ({ piecesMap, mode = "hvh", botColor = "b", difficulty = "medium", 
   const [checkStatus, setCheckStatus] = useState({ w: false, b: false });
   const [promotionModal, setPromotionModal] = useState({ show: false, options: [], row: null, col: null });
   const [timerStarted, setTimerStarted] = useState(false);
-  const [whiteTime, setWhiteTime] = useState(600);
-  const [blackTime, setBlackTime] = useState(600);
+  const [whiteTime, setWhiteTime] = useState(300);
+  const [blackTime, setBlackTime] = useState(300);
   const [gameOver, setGameOver] = useState({ over: false, winner: null, reason: null });
   const [captured, setCaptured] = useState({ w: [], b: [] });
   const [lastMove, setLastMove] = useState(null);
@@ -381,7 +381,7 @@ const Grid = ({ piecesMap, mode = "hvh", botColor = "b", difficulty = "medium", 
               if (move && move.capture) {
                 squareStyle.boxShadow = 'inset 0 0 0 4px #EF4444';
               } else if (move && !move.capture) {
-                squareStyle.backgroundColor = isDark ? '#1a4d2e' : '#d4e8d4';
+                squareStyle.backgroundColor = isDark ? '#1a4d2e' : '#7fe07fff';
               }
 
               if (isCheckedKing) {
